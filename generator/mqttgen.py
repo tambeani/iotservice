@@ -4,9 +4,12 @@ import sys
 import json
 import time
 import random
+import logging
+import argparse
 
 import paho.mqtt.client as mqtt
 
+config_path = "aws-iot-device-sdk-python/samples/basicPubSub/config.json"
 def generate(host, port, username, password, topic, sensors, interval_ms, verbose):
     """generate data and send it to an MQTT broker"""
     mqttc = mqtt.Client()
@@ -46,8 +49,9 @@ def generate(host, port, username, password, topic, sensors, interval_ms, verbos
         time.sleep(interval_secs)
 
 
-def main(config_path):
+def main():
     """main entry point, load and validate config and call generate"""
+    
     try:
         with open(config_path) as handle:
             config = json.load(handle)
@@ -73,7 +77,4 @@ def main(config_path):
         print("Error opening config file '%s'" % config_path, error)
 
 if __name__ == '__main__':
-    if len(sys.argv) == 2:
-        main(sys.argv[1])
-    else:
-        print("usage %s config.json" % sys.argv[0])
+    main()

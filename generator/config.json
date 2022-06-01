@@ -4,7 +4,7 @@
         "password": "12345678",
         "host": "localhost",
         "port": 1883,
-        "topic": "sensors"
+        "topic": "myTopic"
     },
     "misc": {
         "interval_ms": 1000,
