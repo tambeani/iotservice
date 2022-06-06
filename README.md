@@ -12,15 +12,15 @@ Block Diagram:<br/>
 3. Executing ETL scripts on AWS Kinesis
 4. Push refined raw data into S3 bucket
 
-### Generator script
+### Generator script:
 
 Utilized a python-based script for dumping dummy IoT sensor data on AWS IoT core.
 
-**Note:**  Before running the generator script follow below steps,
+Note:  Before running the generator script follow below steps,
 1. Register an IoT thing in AWS 
 2. Add a certificate for registered thing 
 3. Download the CA,private & certificate file
-4. Place downloaded files in /generator
+4. Place downloaded files in /generator directory
 
 Run below code:<br/>
 ```
