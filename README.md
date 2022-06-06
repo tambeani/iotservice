@@ -1,6 +1,6 @@
 # iotservice
 
-This miniproject focusses on ingesting raw IoT sensor data through an ETL pipeline into S3 buckets.
+This project focuses on ingesting raw IoT sensor data through an ETL pipeline into S3 buckets.
 
 Block Diagram:<br/>
 ![alt text](https://github.com/tambeani/iotservice/blob/main/Block%20Diagram.png?raw=true)
@@ -16,7 +16,7 @@ Block Diagram:<br/>
 
 Utilized a python-based script for dumping dummy IoT sensor data on AWS IoT core.
 
-Note:  Before running the generator script follow below steps,
+Note:-&emsp;Before running the generator script follow below steps,
 1. Register an IoT thing in AWS 
 2. Add a certificate for registered thing 
 3. Download the CA,private & certificate file
