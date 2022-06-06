@@ -16,7 +16,8 @@ Block Diagram:<br/>
 
 Utilized a python-based script for dumping dummy IoT sensor data on AWS IoT core.
 
-Note:-&emsp;Before running the generator script follow below steps,
+>Note: Before running the generator script follow below steps,
+
 1. Register an IoT thing in AWS 
 2. Add a certificate for registered thing 
 3. Download the CA,private & certificate file
