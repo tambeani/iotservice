@@ -31,7 +31,7 @@ python basicPubSub.py -e <Your AWS IoT custom endpoint> -r <Root CA file path> -
 **Published data:**
 ```
 {
-    "description": "Assemlby Floor",
+    "description": "Assembly Floor",
     "value": 30,
     "lat": 10,
     "lng": 90,

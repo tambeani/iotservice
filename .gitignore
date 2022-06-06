@@ -19,6 +19,11 @@ target/
 *.iml
 *.ipr
 
+### Keys & certificates
+*.crt
+*.pem
+*.key
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
