@@ -1,9 +1,13 @@
 # iotservice
 
-Commands to setup the Mosquitto broker,publisher & subscriber(secure mode):
+This miniproject focusses on ingesting raw IoT sensor data into ETL pipeline.
 
-1. mosquitto -v -c broker.conf
+Block Diagram:<br/>
+![alt text](https://github.com/tambeani/iotservice/blob/main/Block%20Diagram.png?raw=true)
 
-- This command would start the broker
+### Generator script
 
-2. mosquitto_sub -t myTopic -u admin -P 12345678
+Utilized a python-based script for dumping dummy IoT sensor data on AWS IoT core
+
+
+
