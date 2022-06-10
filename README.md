@@ -28,8 +28,7 @@ Run below code:<br/>
 cd generator
 python basicPubSub.py -e <Your AWS IoT custom endpoint> -r <Root CA file path> -c <Certificate file path> -k <Private key file path>
 ```
-> Note: Use below command to get your AWS IoT custom endpoint
-> aws iot describe-endpoint --endpoint-type iot:Data-ATS --profile demo
+> Note: Use below command to get your AWS IoT custom endpoint <br/> aws iot describe-endpoint --endpoint-type iot:Data-ATS --profile demo
 
 **Published data:**
 ```
