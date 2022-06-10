@@ -69,7 +69,7 @@ Resources:
               RoleArn: !GetAtt KinesisRuleRole.Arn
         RuleDisabled: false
         Sql: !Sub
-          SELECT * FROM 'iot/topic'
+          SELECT * FROM 'sdk/test/Python'
 
   KinesisRuleRole:
     Type: AWS::IAM::Role
