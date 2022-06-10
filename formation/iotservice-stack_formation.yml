@@ -2,11 +2,90 @@ AWSTemplateFormatVersion: "2010-09-09"
 
 Description: Cloud Formation Template for an iotservice Implementation
 
-Parameters:
-  pVPCCIDR:
-    Default: "10.0.0.0/16"
-    Type: String
-    Description: Please Enter the CIDR block for VPC
-
 Resources:
+  S3BucketForKinesis:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: "bucket.kinesis.aniruddhatambe.me"
+      VersioningConfiguration:
+        Status: Enabled
   
+  KinesisDeliveryRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: kinesis-delivery-role
+      AssumeRolePolicyDocument:
+        Statement:
+          - Sid: ''
+            Effect: Allow
+            Principal:
+              Service: firehose.amazonaws.com
+            Action: 'sts:AssumeRole'
+            Condition:
+              StringEquals:
+                'sts:ExternalId': !Ref 'AWS::AccountId'
+
+  KinesisDeliveryToS3Policy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: kinesis-delivery-to-s3-policy
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action:
+              - 's3:AbortMultipartUpload'
+              - 's3:GetBucketLocation'
+              - 's3:GetObject'
+              - 's3:ListBucket'
+              - 's3:ListBucketMultipartUploads'
+              - 's3:PutObject'
+            Resource:
+              - !Sub 'arn:aws:s3:::bucket.kinesis.aniruddhatambe.me'
+              - !Sub 'arn:aws:s3:::bucket.kinesis.aniruddhatambe.me*'
+      Roles:
+        - !Ref KinesisDeliveryRole
+
+  KinesisDeliveryStream:
+    Type: AWS::KinesisFirehose::DeliveryStream
+    Properties:
+      DeliveryStreamName: kinesis-delivery-stream
+      ExtendedS3DestinationConfiguration:
+        BucketARN: !Sub 'arn:aws:s3:::bucket.kinesis.aniruddhatambe.me'
+        BufferingHints:
+          IntervalInSeconds: 60
+          SizeInMBs: 3
+        CompressionFormat: UNCOMPRESSED
+        Prefix: firehose/
+        RoleARN: !GetAtt KinesisDeliveryRole.Arn
+  
+  IoTCoreRuleSendingToKinesis:
+    Type: AWS::IoT::TopicRule
+    Properties:
+      RuleName: send_to_kinesis_rule
+      TopicRulePayload:
+        Actions:
+          - Firehose:
+              DeliveryStreamName: !Ref KinesisDeliveryStream
+              RoleArn: !GetAtt KinesisRuleRole.Arn
+        RuleDisabled: false
+        Sql: !Sub
+          SELECT * FROM 'iot/topic'
+
+  KinesisRuleRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: sending_to_kinesis_role
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: iot.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action: firehose:PutRecord
+                Resource:
+                  - !GetAtt KinesisDeliveryStream.Arn
+          PolicyName: sending_to_kinesis_policy
