@@ -32,7 +32,7 @@ def customCallback(client, userdata, message):
     print(message.topic)
     print("--------------\n\n")
 
-config_path = "aws-iot-device-sdk-python/samples/basicPubSub/config.json"
+config_path = "config.json"
 def generate():
     """generate data and send it to an MQTT broker"""
     config = json.load(open(config_path))
