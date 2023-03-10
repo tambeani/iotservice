@@ -23,6 +23,23 @@ Utilized a python-based script for dumping dummy IoT sensor data on AWS IoT core
 3. Download the CA,private & certificate file
 4. Place downloaded files in /generator directory
 
+Another update we need to do, is to attach the correct policy to the AWS IoT Thing. For the initial phase we have a FullAccess policy, which can be fine-tuned in the future.
+
+Policy:
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "iot:*",
+      "Resource": "*"
+    }
+  ]
+}
+```
+
 Run below code:<br/>
 ```
 cd generator
