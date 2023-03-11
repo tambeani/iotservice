@@ -43,21 +43,23 @@ Policy:
 Run below code:<br/>
 ```
 cd generator
-python basicPubSub.py -e <Your AWS IoT custom endpoint> -r <Root CA file path> -c <Certificate file path> -k <Private key file path>
+python basicPubSub.py -e <Your AWS IoT custom endpoint> -r <Root CA file> -c <Certificate file> -k <Private key file>
 ```
 > Note: Use below command to get your AWS IoT custom endpoint <br/> aws iot describe-endpoint --endpoint-type iot:Data-ATS --profile demo
 
 **Published data:**
 ```
-{
-    "description": "Assembly Floor",
-    "value": 30,
-    "lat": 10,
-    "lng": 90,
-    "type": "temperature",
-    "id": "Sensor 4",
-    "unit": "C"
-}
+    [
+      {
+        "timestamp": "2022-03-15T14:25:00Z",
+        "building": "Snell Library",
+        "floor": "3",
+        "room": "357",
+        "temperature_sensorID": "temp_snell_357_001",
+        "temperature_value": 23.5,
+        "temperature_unit": "C"
+      }
+    ]
 ```
 
 

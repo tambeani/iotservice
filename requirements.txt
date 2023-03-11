@@ -1,7 +1,2 @@
 AWSIoTPythonSDK
-logging
-time
-argparse
-json
-random
 paho
