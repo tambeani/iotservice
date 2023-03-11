@@ -1,0 +1,38 @@
+[
+    {
+        "timestamp": "2022-03-15T14:25:00Z",
+        "building": "Snell Library",
+        "floor": "3",
+        "room": "357",
+        "temperature_sensorID": "temp_snell_357_001",
+        "temperature_value": 23.5,
+        "temperature_unit": "C"
+    },
+    {
+        "timestamp": "2022-03-15T14:25:00Z",
+        "building": "Snell Library",
+        "floor": "3",
+        "room": "357",
+        "humidity_sensorID": "humi_snell_357_001",
+        "humidity_value": 45.0,
+        "humidity_unit": "%"
+    },
+    {
+        "timestamp": "2022-03-15T14:25:00Z",
+        "building": "Snell Library",
+        "floor": "3",
+        "room": "357",
+        "co2_sensorID": "co2_snell_357_001",
+        "co2_value": 800,
+        "co2_unit": "ppm"
+    },
+    {
+        "timestamp": "2022-03-15T14:25:00Z",
+        "building": "Snell Library",
+        "floor": "3",
+        "room": "357",
+        "airPressure_sensorID": "pres_snell_357_001",
+        "airPressure_value": 1010.0,
+        "airPressure_unit": "hPa"
+    }
+]
